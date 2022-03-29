@@ -23,6 +23,7 @@ import Mooc.Todo
 one :: Int
 two :: Int
 one = 1
+
 two = 2
 
 ------------------------------------------------------------------------------
@@ -72,9 +73,10 @@ eeny input = if even input then "eeny" else "meeny"
 -- "mellon".
 
 checkPassword :: String -> String
-checkPassword password = if password == "swordfish"
-                         then "You're in."
-                         else "ACCESS DENIED!"
+checkPassword password =
+  if password == "swordfish" || password == "mellon"
+    then "You're in."
+    else "ACCESS DENIED!"
 
 ------------------------------------------------------------------------------
 -- Ex 7: A postal service prices packages the following way.
@@ -86,7 +88,10 @@ checkPassword password = if password == "swordfish"
 -- in grams, and returns the cost in credits.
 
 postagePrice :: Int -> Int
-postagePrice = todo
+postagePrice weight
+  | weight > 5000 = 6000
+  | weight > 500 = 300 + weight
+  | otherwise = 250
 
 ------------------------------------------------------------------------------
 -- Ex 8: define a function isZero that returns True if it is given an
@@ -96,7 +101,8 @@ postagePrice = todo
 --
 -- Ps. remember, the type of booleans in haskell is Bool
 
-isZero = todo
+isZero :: Integer -> Bool
+isZero input = input == 0
 
 ------------------------------------------------------------------------------
 -- Ex 9: implement using recursion a function sumTo such that
