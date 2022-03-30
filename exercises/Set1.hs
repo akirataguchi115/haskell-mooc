@@ -110,14 +110,16 @@ isZero input = input == 0
 -- computes the sum 1+2+...+n
 
 sumTo :: Integer -> Integer
-sumTo = todo
+sumTo 1 = 1
+sumTo n = n + sumTo (n -1)
 
 ------------------------------------------------------------------------------
 -- Ex 10: power n k should compute n to the power k (i.e. n^k)
 -- Use recursion.
 
 power :: Integer -> Integer -> Integer
-power = todo
+power n 1 = n
+power n k = n * power n (k -1)
 
 ------------------------------------------------------------------------------
 -- Ex 11: ilog3 n should be the number of times you can divide given
@@ -136,4 +138,5 @@ power = todo
 --   ilog3 7 ==> 2
 
 ilog3 :: Integer -> Integer
-ilog3 = todo
+ilog3 0 = 0
+ilog3 n = 1 + ilog3 (n `div` 3)
