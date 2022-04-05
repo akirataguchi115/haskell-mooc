@@ -21,7 +21,7 @@ import Data.List
 -- Ex 1: Define the constant years, that is a list of the values 1982,
 -- 2004 and 2020 in this order.
 
-years = todo
+years = [1982,2004,2020]
 
 ------------------------------------------------------------------------------
 -- Ex 2: define the function takeFinal, which returns the n last
@@ -35,7 +35,7 @@ takeFinal :: Int -> [a] -> [a]
 takeFinal n xs = todo
 
 ------------------------------------------------------------------------------
--- Ex 3: Update an element at a certain index in a list. More
+-- Ex 3: Update an element at a cehttps://y.yarn.co/8626c7c9-755d-44d5-ae97-1ef2b0905b4a_text.gifrtain index in a list. More
 -- precisely, return a list that is identical to the given list except
 -- the element at index i is x.
 --
