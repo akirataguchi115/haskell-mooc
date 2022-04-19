@@ -32,7 +32,7 @@ years = [1982,2004,2020]
 -- Hint! remember the take and drop functions.
 
 takeFinal :: Int -> [a] -> [a]
-takeFinal n xs = todo
+takeFinal n xs = if length xs < n then xs else reverse (take n (reverse xs))
 
 ------------------------------------------------------------------------------
 -- Ex 3: Update an element at a cehttps://y.yarn.co/8626c7c9-755d-44d5-ae97-1ef2b0905b4a_text.gifrtain index in a list. More
