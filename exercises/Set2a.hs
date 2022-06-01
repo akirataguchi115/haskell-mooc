@@ -35,7 +35,7 @@ takeFinal :: Int -> [a] -> [a]
 takeFinal n xs = if length xs < n then xs else reverse (take n (reverse xs))
 
 ------------------------------------------------------------------------------
--- Ex 3: Update an element at a cehttps://y.yarn.co/8626c7c9-755d-44d5-ae97-1ef2b0905b4a_text.gifrtain index in a list. More
+-- Ex 3: Update an element at a certain index in a list. More
 -- precisely, return a list that is identical to the given list except
 -- the element at index i is x.
 --
@@ -46,7 +46,7 @@ takeFinal n xs = if length xs < n then xs else reverse (take n (reverse xs))
 --   updateAt 2 0 [4,5,6,7] ==>  [4,5,0,7]
 
 updateAt :: Int -> a -> [a] -> [a]
-updateAt i x xs = todo
+updateAt i x xs = take i xs ++ [x] ++ drop (i+1) xs
 
 ------------------------------------------------------------------------------
 -- Ex 4: substring i j s should return the substring of s starting at
