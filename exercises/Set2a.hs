@@ -133,7 +133,7 @@ greet first Nothing = "Hello, " ++ first ++ "!"
 --   safeIndex ["a","b","c"] (-1)  ==> Nothing
 
 safeIndex :: [a] -> Int -> Maybe a
-safeIndex xs i = todo
+safeIndex xs i = if i >= 0 && i < length xs then Just (xs !! i) else Nothing
 
 ------------------------------------------------------------------------------
 -- Ex 10: another variant of safe division. This time you should use
