@@ -100,9 +100,11 @@ palindrome a = a == reverse a
 --
 -- Example:
 --   capitalize "goodbye cruel world" ==> "Goodbye Cruel World"
+capitalizeOneWord :: String -> String
+capitalizeOneWord a = toUpper (head a) : tail a
 
 capitalize :: String -> String
-capitalize = todo
+capitalize a = unwords (map capitalizeOneWord (words a))
 
 ------------------------------------------------------------------------------
 -- Ex 6: powers k max should return all the powers of k that are less
