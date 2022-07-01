@@ -204,6 +204,11 @@ joinToLength a list = [ first ++ second | first <- list, second <- list, length 
 --   [] +|+ [True]        ==> [True]
 --   [] +|+ []            ==> []
 
+(+|+) :: [a] -> [a] -> [a]
+myhead :: [a] -> [a]
+myhead [] = []
+myhead (first:rest) = [first]
+(+|+) as bs = myhead as ++ myhead bs
 
 ------------------------------------------------------------------------------
 -- Ex 11: remember the lectureParticipants example from Lecture 2? We
