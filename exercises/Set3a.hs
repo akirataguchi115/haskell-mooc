@@ -225,7 +225,7 @@ myhead (first:rest) = [first]
 --   sumRights [Left "bad!", Left "missing"]         ==>  0
 
 sumRights :: [Either a Int] -> Int
-sumRights = todo
+sumRights xs = sum (rights xs)
 
 ------------------------------------------------------------------------------
 -- Ex 12: recall the binary function composition operation
