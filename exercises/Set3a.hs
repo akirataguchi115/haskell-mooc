@@ -241,7 +241,10 @@ sumRights xs = sum (rights xs)
 --   multiCompose [(3*), (2^), (+1)] 0 ==> 6
 --   multiCompose [(+1), (2^), (3*)] 0 ==> 2
 
-multiCompose fs = todo
+multiCompose :: [a -> a] -> a -> a
+multiCompose fs c
+  | null fs = c
+  | otherwise = multiCompose (init fs) (last fs c)
 
 ------------------------------------------------------------------------------
 -- Ex 13: let's consider another way to compose multiple functions. Given
