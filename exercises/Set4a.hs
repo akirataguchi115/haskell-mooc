@@ -117,8 +117,9 @@ longest xss =  head $ sortBy (comparing head) $ filter (\x -> length x == length
 --   incrementKey True [(True,1),(False,3),(True,4)] ==> [(True,2),(False,3),(True,5)]
 --   incrementKey 'a' [('a',3.4)] ==> [('a',4.4)]
 
-incrementKey :: k -> [(k,v)] -> [(k,v)]
-incrementKey = todo
+incrementKey :: (Eq k, Num v) => k -> [(k,v)] -> [(k,v)]
+incrementKey k [] = []
+incrementKey k (x:xs) = if k == fst x then (fst x, snd x + 1) : incrementKey k xs else x : incrementKey k xs
 
 ------------------------------------------------------------------------------
 -- Ex 7: compute the average of a list of values of the Fractional
