@@ -100,7 +100,8 @@ rangeOf xs = maximum xs - minimum xs
 --   longest [[1,2,3],[4,5],[6]] ==> [1,2,3]
 --   longest ["bcd","def","ab"] ==> "bcd"
 
-longest = todo
+longest :: (Eq a, Ord a) => [[a]] -> [a]
+longest xss =  head $ sortBy (comparing head) $ filter (\x -> length x == length (last $ sortBy (comparing length) xss)) xss
 
 ------------------------------------------------------------------------------
 -- Ex 6: Implement the function incrementKey, that takes a list of
