@@ -1,7 +1,7 @@
 -- Exercise set 4a:
 --
--- * using type classes
--- * working with lists
+--  * using type classes
+--  * working with lists
 --
 -- Type classes you'll need
 --  * Eq
@@ -101,7 +101,7 @@ rangeOf xs = maximum xs - minimum xs
 --   longest ["bcd","def","ab"] ==> "bcd"
 
 longest :: (Eq a, Ord a) => [[a]] -> [a]
-longest xss =  head $ sortBy (comparing head) $ filter (\x -> length x == length (last $ sortBy (comparing length) xss)) xss
+longest xss =  minimumBy (comparing head) (filter (\x -> length x == length (maximumBy (comparing length) xss)) xss)
 
 ------------------------------------------------------------------------------
 -- Ex 6: Implement the function incrementKey, that takes a list of
@@ -153,7 +153,7 @@ average xs = sum xs / fromIntegral (length xs)
 --     ==> "Lisa"
 
 winner :: Map.Map String Int -> String -> String -> String
-winner scores player1 player2 = todo
+winner scores player1 player2 = if Map.findWithDefault 0 player1 scores >= Map.findWithDefault 0 player2 scores then player1 else player2
 
 ------------------------------------------------------------------------------
 -- Ex 9: compute how many times each value in the list occurs. Return
