@@ -167,8 +167,12 @@ winner scores player1 player2 = if Map.findWithDefault 0 player1 scores >= Map.f
 --   freqs [False,False,False,True]
 --     ==> Map.fromList [(False,3),(True,1)]
 
+helper :: (Eq a, Ord a) => [a] -> Map.Map a Int -> Map.Map a Int
+helper xs fs
+  = foldl
+      (\ fs x -> Map.insert x (Map.findWithDefault 0 x fs + 1) fs) fs xs
 freqs :: (Eq a, Ord a) => [a] -> Map.Map a Int
-freqs xs = todo
+freqs xs = helper xs Map.empty
 
 ------------------------------------------------------------------------------
 -- Ex 10: recall the withdraw example from the course material. Write a
