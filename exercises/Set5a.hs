@@ -1,7 +1,7 @@
 -- Exercise set 5a
 --
--- * defining algebraic datatypes
--- * recursive datatypes
+--  * defining algebraic datatypes
+--  * recursive datatypes
 
 module Set5a where
 
@@ -12,7 +12,7 @@ import Mooc.Todo
 -- Bus, Tram and Train.
 --
 -- The constructors don't need any fields.
-
+data Vehicle = Bike | Bus | Tram | Train
 
 ------------------------------------------------------------------------------
 -- Ex 2: Define the type BusTicket that can represent values like these:
