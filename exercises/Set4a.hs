@@ -200,8 +200,25 @@ freqs xs = helper xs Map.empty
 --     ==> fromList [("Bob",100),("Mike",50)]
 
 transfer :: String -> String -> Int -> Map.Map String Int -> Map.Map String Int
-transfer from to amount bank = todo
-
+transfer from to amount bank =
+  case Map.lookup from bank of
+    Just notNull -> do
+      if Map.notMember from bank
+      then bank
+      else if Map.notMember to bank
+      then bank
+      else if amount < 0
+      then bank
+      else if notNull < amount
+      then bank
+      else do
+        case Map.lookup from bank of
+          Just fromAmount -> do
+            case Map.lookup to bank of
+              Just toAmount -> Map.insert from (fromAmount - amount) (Map.insert to (toAmount + amount) bank)
+              Nothing -> bank
+          Nothing -> bank
+    Nothing -> bank
 ------------------------------------------------------------------------------
 -- Ex 11: given an Array and two indices, swap the elements in the indices.
 --
