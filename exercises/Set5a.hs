@@ -6,6 +6,7 @@
 module Set5a where
 
 import Mooc.Todo
+import GHC.Exts.Heap (GenClosure(value))
 
 ------------------------------------------------------------------------------
 -- Ex 1: Define the type Vehicle that has four constructors: Bike,
@@ -154,25 +155,28 @@ study Graduated = Graduated
 -- get (tick (tick (toggle (tick zero))))
 --   ==> -1
 
-data UpDown = UpDownUndefined1 | UpDownUndefined2
+data UpDown = Increasing Int | Decreasing Int
 
 -- zero is an increasing counter with value 0
 zero :: UpDown
-zero = todo
+zero = Increasing 0
 
 -- get returns the counter value
 get :: UpDown -> Int
-get ud = todo
+get (Increasing value) = value
+get (Decreasing value) = value
 
 -- tick increases an increasing counter by one or decreases a
 -- decreasing counter by one
 tick :: UpDown -> UpDown
-tick ud = todo
+tick (Increasing ud) = Increasing (ud + 1)
+tick (Decreasing ud) = Decreasing (ud - 1)
 
 -- toggle changes an increasing counter into a decreasing counter and
 -- vice versa
 toggle :: UpDown -> UpDown
-toggle ud = todo
+toggle (Increasing ud) = Decreasing ud
+toggle (Decreasing ud) = Increasing ud
 
 ------------------------------------------------------------------------------
 -- Ex 8: you'll find a Color datatype below. It has the three basic
