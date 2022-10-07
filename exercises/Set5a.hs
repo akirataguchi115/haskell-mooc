@@ -7,6 +7,7 @@ module Set5a where
 
 import Mooc.Todo
 import GHC.Exts.Heap (GenClosure(value))
+import System.Posix (TerminalMode(TwoStopBits))
 
 ------------------------------------------------------------------------------
 -- Ex 1: Define the type Vehicle that has four constructors: Bike,
@@ -211,8 +212,6 @@ rgb Green = [0,1,0]
 rgb Blue = [0,0,1]
 rgb (Mix color1 color2) = zipWith (/) (zipWith (+) (rgb color1) (rgb color2)) [2,2,2]
 rgb (Invert col) = zipWith (-) [1,1,1] (rgb col)
--- hint use zipwith
-
 
 ------------------------------------------------------------------------------
 -- Ex 9: define a parameterized datatype OneOrTwo that contains one or
@@ -222,6 +221,7 @@ rgb (Invert col) = zipWith (-) [1,1,1] (rgb col)
 --   One True         ::  OneOrTwo Bool
 --   Two "cat" "dog"  ::  OneOrTwo String
 
+data OneOrTwo a = One a | Two a a
 
 ------------------------------------------------------------------------------
 -- Ex 10: define a recursive datatype KeyVals for storing a set of
