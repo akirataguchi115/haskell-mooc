@@ -4,6 +4,7 @@ module Set6 where
 
 import Mooc.Todo
 import Data.Char (toLower)
+import qualified Data.Text as Data.String
 
 ------------------------------------------------------------------------------
 -- Ex 1: define an Eq instance for the type Country below. You'll need
@@ -49,7 +50,11 @@ data Name = Name String
   deriving Show
 
 instance Eq Name where
-  (==) = todo
+  (==) (Name []) (Name []) = True
+  (==) (Name (x:xs)) (Name (y:ys))
+    | Data.Char.toLower x == Data.Char.toLower y = (==) (Name xs) (Name ys)
+    | otherwise = False
+  (==) _ _ = False
 
 ------------------------------------------------------------------------------
 -- Ex 4: here is a list type parameterized over the type it contains.
