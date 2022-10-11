@@ -93,6 +93,16 @@ data Egg = ChickenEgg | ChocolateEgg
 data Milk = Milk Int -- amount in litres
   deriving Show
 
+class Price product where
+  price :: product -> Int
+
+instance Price Egg where
+  price ChickenEgg = 20
+  price ChocolateEgg = 30
+
+instance Price Milk where
+  price (Milk liters) = liters * 15
+
 
 ------------------------------------------------------------------------------
 -- Ex 6: define the necessary instances in order to be able to compute these:
