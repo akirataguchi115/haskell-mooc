@@ -112,6 +112,13 @@ instance Price Milk where
 -- price [Just ChocolateEgg, Nothing, Just ChickenEgg]  ==> 50
 -- price [Nothing, Nothing, Just (Milk 1), Just (Milk 2)]  ==> 45
 
+instance (Price p) => Price (Maybe p) where
+  price (Just p) = price p
+  price Nothing = 0
+
+instance (Price p) => Price [p] where
+  price [] = 0
+  price (p:products) = price p + price products
 
 ------------------------------------------------------------------------------
 -- Ex 7: below you'll find the datatype Number, which is either an
