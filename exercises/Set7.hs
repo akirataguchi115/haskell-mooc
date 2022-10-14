@@ -49,15 +49,17 @@ data Set a = Set [a]
 
 -- emptySet is a set with no elements
 emptySet :: Set a
-emptySet = todo
+emptySet = Set []
 
 -- member tests if an element is in a set
 member :: Eq a => a -> Set a -> Bool
-member = todo
+member a (Set xs) = a `elem` xs
 
 -- add a member to a set
-add :: a -> Set a -> Set a
-add = todo
+add :: (Ord a, Eq a) => a -> Set a -> Set a
+add a (Set xs)
+  | not (member a (Set xs)) = Set $ sort $ (++) xs [a]
+  | otherwise = Set xs
 
 ------------------------------------------------------------------------------
 -- Ex 3: a state machine for baking a cake. The type Event represents
