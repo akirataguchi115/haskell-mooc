@@ -94,10 +94,21 @@ add a (Set xs)
 data Event = AddEggs | AddFlour | AddSugar | Mix | Bake
   deriving (Eq,Show)
 
-data State = Start | Error | Finished
+data State = Start | Error | Finished | EggsAdded | SugarAdded | FlourAdded | IngredientsAdded | Mixed
   deriving (Eq,Show)
 
-step = todo
+step :: State -> Event -> State
+
+step Start AddEggs = EggsAdded
+step EggsAdded AddFlour = FlourAdded
+step EggsAdded AddSugar = SugarAdded
+step SugarAdded AddFlour = IngredientsAdded
+step FlourAdded AddSugar = IngredientsAdded
+step IngredientsAdded Mix = Mixed
+step Mixed Bake = Finished
+step Finished _  = Finished
+
+step _ _ = Error
 
 -- do not edit this
 bake :: [Event] -> State
