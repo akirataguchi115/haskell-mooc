@@ -79,7 +79,7 @@ examplePicture1 = Picture f
 -- In addition to the Picture it takes a width and a height.
 --
 -- The return type is IO (). Check Lecture 8 for a short introduction
--- to IO
+-- to IO/tmp/haskell-stack-ghci/8237479e/ghci-script
 
 render :: Picture -> Int -> Int -> String -> IO ()
 render (Picture f) w h name = writePng name (generateImage (\x y -> colorToPixel (f (Coord x y))) w h)
@@ -133,7 +133,11 @@ renderListExample = renderList justADot (9,11) (9,11)
 --      ["000000","000000","000000"]]
 
 dotAndLine :: Picture
-dotAndLine = todo
+dotAndLine = Picture f
+  where f :: Coord -> Color
+        f (Coord 3 4) = white
+        f (Coord _ 8) = pink
+        f (Coord _ _) = black
 ------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------
