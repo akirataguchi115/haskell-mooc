@@ -14,6 +14,8 @@ import Mooc.Todo
 -- exposes the Codec.Picture module that has everything we need.
 import Codec.Picture
 import Distribution.SPDX (LicenseId(TCP_wrappers))
+import Distribution.Simple.Command (OptDescr(BoolOpt))
+import Text.XHtml (coords)
 
 -- Let's start by defining Colors and Pictures.
 
@@ -257,10 +259,16 @@ rectangle x0 y0 w h = Shape function
 -- shape.
 
 union :: Shape -> Shape -> Shape
-union = todo
+union (Shape s1) (Shape s2) = Shape function
+  where function :: Coord -> Bool
+        function coordinates = s1 coordinates || s2 coordinates
 
 cut :: Shape -> Shape -> Shape
-cut = todo
+cut (Shape s1) (Shape s2) = Shape function
+  where function :: Coord -> Bool
+        function coordinates
+          | s2 coordinates = False
+          | otherwise = s1 coordinates
 ------------------------------------------------------------------------------
 
 -- Here's a snowman, built using union from circles and rectangles.
