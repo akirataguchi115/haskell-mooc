@@ -13,6 +13,7 @@ import Mooc.Todo
 -- We'll use the JuicyPixels library to generate images. The library
 -- exposes the Codec.Picture module that has everything we need.
 import Codec.Picture
+import Distribution.SPDX (LicenseId(TCP_wrappers))
 
 -- Let's start by defining Colors and Pictures.
 
@@ -170,10 +171,11 @@ dotAndLine = Picture f
 --          ["7f0000","7f0000","7f0000"]]
 
 blendColor :: Color -> Color -> Color
-blendColor = todo
+blendColor (Color r1 g1 b1) (Color r2 g2 b2) = Color (div (r1 + r2) 2) (div (g1 + g2) 2) (div (b1 + b2) 2)
 
 combine :: (Color -> Color -> Color) -> Picture -> Picture -> Picture
-combine = todo
+combine function (Picture p1) (Picture p2) = Picture wrapper
+  where wrapper coordinates = function (p1 coordinates) (p2 coordinates)
 
 ------------------------------------------------------------------------------
 
