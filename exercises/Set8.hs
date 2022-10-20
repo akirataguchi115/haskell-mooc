@@ -236,7 +236,12 @@ exampleCircle = fill red (circle 80 100 200)
 --        ["000000","000000","000000","000000","000000","000000"]]
 
 rectangle :: Int -> Int -> Int -> Int -> Shape
-rectangle x0 y0 w h = todo
+rectangle x0 y0 w h = Shape function
+  where function :: Coord -> Bool
+        function (Coord x y)
+          | x < x0 || y < y0 = False
+          | x >= (x0 + w) || y >= (y0 + h) = False
+          | otherwise = True
 ------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------
